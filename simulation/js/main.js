@@ -112,8 +112,24 @@ function initializeSimulation() {
         const vNodes = document.getElementById('values').value.split(',').map(Number);
         capacityDisplay.innerText = capacity;
 
-        if (wNodes.length !== vNodes.length || isNaN(capacity)) {
-            throw new Error("Invalid Input");
+        if (isNaN(capacity) || capacity <= 0) {
+            alert("Please enter a valid Knapsack Capacity greater than 0.");
+            return false;
+        }
+
+        if (wNodes.length !== vNodes.length) {
+            alert("Number of Item Weights and Item Values must be equal.");
+            return false;
+        }
+
+        if (wNodes.some(isNaN) || vNodes.some(isNaN)) {
+            alert("Please ensure all weights and values are valid numbers.");
+            return false;
+        }
+
+        if (wNodes.some(w => w < 0) || vNodes.some(v => v < 0)) {
+            alert("Item weights and values cannot be negative. Please enter positive values.");
+            return false;
         }
 
         items = wNodes.map((w, i) => ({

@@ -453,8 +453,10 @@
           </li>
           </ol>
           <hr>
-          <h2 id="illustrative-example">Illustrative Example</h2>
-          <p>Assume a knapsack with capacity: W = 50</p>
+          <h2 id="illustrative-examples">Illustrative Examples</h2>
+          <ol>
+          <li>Assume a knapsack with capacity: W = 50</li>
+          </ol>
           <p>Available items are:</p>
           <table>
           <thead>
@@ -497,6 +499,78 @@
           <li>Total weight used = 50</li>
           <li>Total value obtained = 240</li>
           </ul>
+          <hr>
+          <ol start="2">
+          <li>Assume a knapsack with capacity: <strong>W = 100</strong></li>
+          </ol>
+          <p>Available items are:</p>
+          <table>
+          <thead>
+          <tr>
+          <th>Item</th>
+          <th>Weight (<code>wᵢ</code>)</th>
+          <th>Value (<code>vᵢ</code>)</th>
+          <th>Ratio (<code>vᵢ / wᵢ</code>)</th>
+          </tr>
+          </thead>
+          <tbody><tr>
+          <td>P</td>
+          <td>10</td>
+          <td>50</td>
+          <td>5.0</td>
+          </tr>
+          <tr>
+          <td>Q</td>
+          <td>20</td>
+          <td>80</td>
+          <td>4.0</td>
+          </tr>
+          <tr>
+          <td>R</td>
+          <td>30</td>
+          <td>90</td>
+          <td>3.0</td>
+          </tr>
+          </tbody></table>
+          <p>After computing the value-to-weight ratios and sorting in descending order, the order becomes:<br><strong>P → Q → R</strong></p>
+          <h3 id="step-by-step-selection">Step-by-Step Selection</h3>
+          <ul>
+          <li><p><strong>Item P</strong> is fully selected:  </p>
+          <ul>
+          <li>Weight used = 10  </li>
+          <li>Value gained = 50  </li>
+          </ul>
+          </li>
+          <li><p><strong>Item Q</strong> is fully selected:  </p>
+          <ul>
+          <li>Weight used = 20  </li>
+          <li>Value gained = 80  </li>
+          </ul>
+          </li>
+          <li><p><strong>Item R</strong> is fully selected:  </p>
+          <ul>
+          <li>Weight used = 30  </li>
+          <li>Value gained = 90  </li>
+          </ul>
+          </li>
+          </ul>
+          <h3 id="capacity-analysis">Capacity Analysis</h3>
+          <ul>
+          <li>Total weight of all items = 10 + 20 + 30 = <strong>60</strong></li>
+          <li>Knapsack capacity = <strong>100</strong></li>
+          <li>Remaining capacity = <strong>40</strong></li>
+          </ul>
+          <p>Since <strong>no items remain</strong>, the algorithm terminates execution even though the knapsack is not completely filled.</p>
+          <h3 id="final-results">Final Results</h3>
+          <ul>
+          <li><strong>Total weight used = 60</strong></li>
+          <li><strong>Total value obtained = 220</strong></li>
+          <li><strong>Unused capacity = 40</strong></li>
+          </ul>
+          <h3 id="key-observation">Key Observation</h3>
+          <p>In the Fractional Knapsack problem, <strong>each item can be selected at most once</strong>.<br>If the knapsack capacity is greater than the sum of all item weights, <strong>all items are selected fully</strong>, and the remaining capacity remains unused. No repetition or forced fractional selection occurs.</p>
+          <h3 id="teaching-insight">Teaching Insight</h3>
+          <p>This example highlights an important edge case and clearly distinguishes the <strong>Fractional Knapsack problem</strong> from the <strong>Unbounded Knapsack problem</strong>, where items can be selected multiple times.</p>
           <hr>
           <h2 id="why-the-greedy-approach-works">Why the Greedy Approach Works</h2>
           <p>The Fractional Knapsack Problem satisfies the <strong>Greedy Choice Property</strong>, which means that selecting the locally optimal item (with the highest value-to-weight ratio) at each step leads to the globally optimal solution.</p>

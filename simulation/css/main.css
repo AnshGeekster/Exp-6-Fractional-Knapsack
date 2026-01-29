@@ -17,11 +17,11 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font-body);
-    background: #f0f9ff;
-    background-image: url("../images/background.jpg");
+    background: #e2e8f0;
+    /* Darker background for better contrast */
     background-size: cover;
     background-attachment: fixed;
-    background-position: center 6px; /* Shifted downwards to reveal top content */
+    background-position: center 6px;
     color: var(--text-main);
     height: 100vh;
     overflow: hidden;
@@ -30,18 +30,18 @@ body {
 /* MAIN LAYOUT */
 .app-container {
     max-width: 1400px;
-    margin: 100px auto 100px auto;
+    margin: 50px auto 100px auto;
     padding: 10px 10px 10px 10px;
     display: flex;
     flex-direction: column;
-    height: 75vh;
+    height: 82vh;
     box-sizing: border-box;
     justify-content: center;
 }
 
 .main-grid {
     display: grid;
-    grid-template-columns: 320px 1fr 320px;
+    grid-template-columns: 340px 1fr 340px;
     gap: 15px;
     /* Reduced gap */
     flex: 1;
@@ -51,9 +51,10 @@ body {
 /* PANELS */
 .glass-panel {
     background: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    /* Stronger shadow */
+    border: 1px solid #94a3b8;
+    /* Darker border */
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -184,8 +185,8 @@ button {
     align-items: center;
     justify-content: flex-start;
     padding: 15px;
-    overflow-y: hidden;
-    /* Fix layout shift */
+    overflow-y: auto;
+    /* User request: Make middle section scrollable */
     position: relative;
     justify-content: start;
     /* Reset from evenly */
@@ -309,17 +310,23 @@ button {
 }
 
 /* LEGEND */
+/* LEGEND */
 .viz-legend {
-    position: absolute;
-    bottom: 5px;
-    left: 10px;
-    font-size: 0.7rem;
-    color: #64748b;
+    position: relative;
+    /* User preferred scrollable option with no overlap */
+    bottom: auto;
+    left: auto;
+    margin-top: 10px;
+    width: 100%;
     display: flex;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 2px 6px;
-    border-radius: 4px;
+    justify-content: center;
+    gap: 15px;
+    background: transparent;
+    padding: 5px 0;
+    font-size: 0.75rem;
+    color: #64748b;
+    border-top: 1px dotted #e2e8f0;
+    padding-top: 10px;
 }
 
 
@@ -480,12 +487,12 @@ button {
     align-items: center;
     margin-top: auto;
     width: 90%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .knapsack-container {
     width: 100%;
-    height: 40px;
+    height: 45px;
     border: 2px solid #334155;
     border-radius: 4px;
     background: #e2e8f0;
@@ -506,17 +513,17 @@ button {
 }
 
 .knapsack-label {
-    position: absolute;
+    position: relative;
     width: 100%;
     text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-    font-weight: bold;
-    color: #0f172a;
-    pointer-events: none;
-    z-index: 5;
-    font-size: 0.8rem;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.9), 0 0 5px rgba(255, 255, 255, 0.7);
+    font-weight: 700;
+    color: #1e293b;
+    /* Darker for visibility */
+    font-size: 0.85rem;
+    margin-top: -5px;
+    margin-bottom: 0px;
+    z-index: 10;
+    /* High z-index to ensure visibility */
 }
 
 /* Faded button style */
@@ -528,4 +535,10 @@ button.faded {
 
 button {
     transition: opacity 0.3s ease;
+}
+.knapsack-container {
+    cursor: default;
+}
+.processing-panel {
+    position: relative;   /* anchor for popup */
 }

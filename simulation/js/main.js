@@ -46,16 +46,22 @@ window.onload = () => {
 
 // Initialization
 function randomizeInputs() {
-    const numItems = Math.floor(Math.random() * 5) + 3;
+    // Generate between 3 and 10 items
+    const numItems = Math.floor(Math.random() * 8) + 3;
     const newWeights = [];
     const newValues = [];
+
     for (let i = 0; i < numItems; i++) {
-        newWeights.push(Math.floor(Math.random() * 30) + 10);
-        newValues.push(Math.floor(Math.random() * 100) + 20);
+        // Weights 5 to 60
+        newWeights.push(Math.floor(Math.random() * 55) + 5);
+        // Values 20 to 200
+        newValues.push(Math.floor(Math.random() * 180) + 20);
     }
     document.getElementById('weights').value = newWeights.join(', ');
     document.getElementById('values').value = newValues.join(', ');
-    document.getElementById('capacity').value = Math.floor(Math.random() * 50) + 40;
+
+    // Capacity 30 to 150
+    document.getElementById('capacity').value = Math.floor(Math.random() * 120) + 30;
 
     resetSimulation();
 }
@@ -108,12 +114,32 @@ function toggleInputs(enabled) {
 function initializeSimulation() {
     try {
         capacity = parseFloat(document.getElementById('capacity').value);
-        const wNodes = document.getElementById('weights').value.split(',').map(Number);
-        const vNodes = document.getElementById('values').value.split(',').map(Number);
+        const wStr = document.getElementById('weights').value.trim();
+        const vStr = document.getElementById('values').value.trim();
+
+        if (!wStr || !vStr) {
+            alert("Please provide both Weights and Values.");
+            return false;
+        }
+
+        const wNodes = wStr.split(',').map(item => parseFloat(item.trim()));
+        const vNodes = vStr.split(',').map(item => parseFloat(item.trim()));
+
         capacityDisplay.innerText = capacity;
+
+        // --- CONSTRAINTS / VALIDATION ---
+        const MAX_CAPACITY = 200;
+        const MAX_ITEMS = 15;
+        const MAX_WEIGHT = 100;
+        const MAX_VALUE = 2000;
 
         if (isNaN(capacity) || capacity <= 0) {
             alert("Please enter a valid Knapsack Capacity greater than 0.");
+            return false;
+        }
+
+        if (capacity > MAX_CAPACITY) {
+            alert(`Capacity exceeds the maximum limit of ${MAX_CAPACITY} for proper visualization.`);
             return false;
         }
 
@@ -122,15 +148,35 @@ function initializeSimulation() {
             return false;
         }
 
+        if (wNodes.length > MAX_ITEMS) {
+            alert(`Too many items! Please limits items to ${MAX_ITEMS} or fewer for best display.`);
+            return false;
+        }
+
         if (wNodes.some(isNaN) || vNodes.some(isNaN)) {
             alert("Please ensure all weights and values are valid numbers.");
             return false;
         }
 
-        if (wNodes.some(w => w < 0) || vNodes.some(v => v < 0)) {
-            alert("Item weights and values cannot be negative. Please enter positive values.");
+        if (wNodes.some(w => w <= 0) || vNodes.some(v => v < 0)) {
+            alert("Item weights must be positive, and values cannot be negative.");
             return false;
         }
+
+        if (wNodes.some(w => w > MAX_WEIGHT)) {
+            alert(`Some weights exceed the maximum limit of ${MAX_WEIGHT}.`);
+            return false;
+        }
+
+        if (vNodes.some(v => v > MAX_VALUE)) { // Soft limit for values just in case
+            alert(`Some values are very high (>${MAX_VALUE}), consider smaller numbers.`);
+            return false;
+        }
+
+        // -------------------------------
+
+        // Dynamic visual height normalization
+        const maxW = Math.max(...wNodes);
 
         items = wNodes.map((w, i) => ({
             id: i + 1,
@@ -138,7 +184,8 @@ function initializeSimulation() {
             value: vNodes[i],
             ratio: (vNodes[i] / w),
             color: `hsl(${i * 60}, 70%, 60%)`,
-            visHeight: Math.min(60, Math.max(30, w * 1.5))
+            // Scale visualization height based on max weight in this set, clamped 30-70px
+            visHeight: Math.min(70, Math.max(30, (w / maxW) * 70))
         }));
 
         renderItems(items);
@@ -149,6 +196,7 @@ function initializeSimulation() {
         return true;
     } catch (e) {
         log(`Error: ${e.message}`, 'error');
+        console.error(e);
         return false;
     }
 }
@@ -401,14 +449,25 @@ function renderStep(index) {
     state.knapsackSegments.forEach(seg => {
         addKnapsackSegment(seg);
     });
-
+    
     // Animate fill width
     setTimeout(() => {
         knapsackFill.style.width = state.knapsackPct + '%';
     }, 10);
 
-    currentWeightDisplay.innerText = state.currentW.toFixed(1);
-    totalValueDisplay.innerText = state.totalV.toFixed(2);
+currentWeightDisplay.innerText = state.currentW.toFixed(1);
+totalValueDisplay.innerText = state.totalV.toFixed(2);
+capacityDisplay.innerText = capacity;
+
+// Add tooltip to the knapsack label - simpler approach
+const knapsackContainer = document.querySelector('.knapsack-container');
+
+if (knapsackContainer) {
+    knapsackContainer.title =
+        `Knapsack (${state.currentW.toFixed(1)} / ${capacity})
+         ≡ Covered Capacity / Total Capacity`;
+}
+
 
     resultBody.innerHTML = '';
     state.tableRows.forEach(row => {
@@ -422,18 +481,25 @@ function renderStep(index) {
     });
 
     if (state.finished) {
-        statusTag.innerText = 'Completed';
-        statusTag.style.background = '#dcfce7';
-        statusTag.style.color = '#15803d';
-        autoPlayBtn.disabled = true;
-        pauseBtn.disabled = true;
-        nextBtn.disabled = true;
+    statusTag.innerText = 'Completed';
+    statusTag.style.background = '#dcfce7';
+    statusTag.style.color = '#15803d';
 
-        autoPlayBtn.classList.add('faded');
-        pauseBtn.classList.add('faded');
-        nextBtn.classList.add('faded');
-        prevBtn.classList.remove('faded');
+    autoPlayBtn.disabled = true;
+    pauseBtn.disabled = true;
+    nextBtn.disabled = true;
+
+    autoPlayBtn.classList.add('faded');
+    pauseBtn.classList.add('faded');
+    nextBtn.classList.add('faded');
+    prevBtn.classList.remove('faded');
+
+    // 🔹 SHOW EXPLANATION IF KNAPSACK NOT FULL
+    if (state.currentW < capacity) {
+        setTimeout(showKnapsackPopup, 500);
     }
+}
+    
 }
 
 function alreadyTakenIds(currentIndex) {
@@ -469,7 +535,6 @@ function addKnapsackSegment(seg) {
     segment.style.height = '100%';
     segment.style.backgroundColor = seg.color;
     segment.style.boxShadow = 'inset 0 0 10px rgba(0,0,0,0.1)';
-    segment.title = seg.text;
     segment.style.display = 'flex';
     segment.style.alignItems = 'center';
     segment.style.justifyContent = 'center';
@@ -492,4 +557,13 @@ function log(msg, isLatest) {
     if (isLatest) div.style.fontWeight = 'bold';
     logArea.appendChild(div);
     logArea.scrollTop = logArea.scrollHeight;
+}
+function showKnapsackPopup() {
+    const popup = document.getElementById('knapsackPopup');
+    if (popup) popup.style.display = 'block';
+}
+
+function closeKnapsackPopup() {
+    const popup = document.getElementById('knapsackPopup');
+    if (popup) popup.style.display = 'none';
 }

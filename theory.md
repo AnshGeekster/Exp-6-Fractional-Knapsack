@@ -98,9 +98,9 @@ Items are selected in **descending order of their value-to-weight ratio**. Items
 
 ---
 
-## Illustrative Example
+## Illustrative Examples
 
-Assume a knapsack with capacity: W = 50
+1. Assume a knapsack with capacity: W = 50
 
 
 Available items are:
@@ -124,6 +124,58 @@ Value gained from item C: (20 / 30) × 120 = 80
 Final results:
 - Total weight used = 50
 - Total value obtained = 240
+
+---
+
+2. Assume a knapsack with capacity: **W = 100**
+
+Available items are:
+
+| Item | Weight (`wᵢ`) | Value (`vᵢ`) | Ratio (`vᵢ / wᵢ`) |
+|------|---------------|--------------|------------------|
+| P    | 10            | 50           | 5.0              |
+| Q    | 20            | 80           | 4.0              |
+| R    | 30            | 90           | 3.0              |
+
+After computing the value-to-weight ratios and sorting in descending order, the order becomes:  
+**P → Q → R**
+
+### Step-by-Step Selection
+
+- **Item P** is fully selected:  
+  - Weight used = 10  
+  - Value gained = 50  
+
+- **Item Q** is fully selected:  
+  - Weight used = 20  
+  - Value gained = 80  
+
+- **Item R** is fully selected:  
+  - Weight used = 30  
+  - Value gained = 90  
+
+### Capacity Analysis
+
+- Total weight of all items = 10 + 20 + 30 = **60**
+- Knapsack capacity = **100**
+- Remaining capacity = **40**
+
+Since **no items remain**, the algorithm terminates execution even though the knapsack is not completely filled.
+
+### Final Results
+
+- **Total weight used = 60**
+- **Total value obtained = 220**
+- **Unused capacity = 40**
+
+### Key Observation
+
+In the Fractional Knapsack problem, **each item can be selected at most once**.  
+If the knapsack capacity is greater than the sum of all item weights, **all items are selected fully**, and the remaining capacity remains unused. No repetition or forced fractional selection occurs.
+
+### Teaching Insight
+
+This example highlights an important edge case and clearly distinguishes the **Fractional Knapsack problem** from the **Unbounded Knapsack problem**, where items can be selected multiple times.
 
 ---
 

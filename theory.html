@@ -364,6 +364,8 @@
           <p>For example, if half of an item is taken, half of its value is obtained. This property distinguishes the fractional knapsack problem from the 0/1 knapsack problem, where items must be taken entirely or not at all.</p>
           <hr>
           <h2 id="comparison-with-01-knapsack-problem">Comparison with 0/1 Knapsack Problem</h2>
+          <p>The key difference between the <strong>0/1 Knapsack</strong> and <strong>Fractional Knapsack</strong> problems lies in how items are selected and how optimal solutions are obtained. While both aim to maximize total value under a weight constraint, their approaches and behaviors differ significantly.</p>
+          <h3 id="tabular-comparison">Tabular Comparison</h3>
           <table>
           <thead>
           <tr>
@@ -374,8 +376,8 @@
           </thead>
           <tbody><tr>
           <td>Item selection</td>
-          <td>Entire item or none</td>
-          <td>Items can be divided</td>
+          <td>Entire item is either taken or not taken (0 or 1)</td>
+          <td>Items can be divided and taken fractionally</td>
           </tr>
           <tr>
           <td>Algorithm used</td>
@@ -389,10 +391,82 @@
           </tr>
           <tr>
           <td>Time complexity</td>
-          <td>High</td>
-          <td>Lower</td>
+          <td>Higher (pseudo-polynomial)</td>
+          <td>Lower (polynomial)</td>
+          </tr>
+          <tr>
+          <td>Item repetition</td>
+          <td>Not allowed</td>
+          <td>Not allowed</td>
+          </tr>
+          <tr>
+          <td>Typical applications</td>
+          <td>Discrete objects (machines, devices)</td>
+          <td>Divisible resources (gold, liquids)</td>
           </tr>
           </tbody></table>
+          <h3 id="example-based-explanation">Example-Based Explanation</h3>
+          <h4 id="consider-the-following-items-and-knapsack-capacity">Consider the following items and knapsack capacity:</h4>
+          <table>
+          <thead>
+          <tr>
+          <th>Item</th>
+          <th>Weight</th>
+          <th>Value</th>
+          </tr>
+          </thead>
+          <tbody><tr>
+          <td>A</td>
+          <td>10</td>
+          <td>60</td>
+          </tr>
+          <tr>
+          <td>B</td>
+          <td>20</td>
+          <td>100</td>
+          </tr>
+          <tr>
+          <td>C</td>
+          <td>30</td>
+          <td>120</td>
+          </tr>
+          </tbody></table>
+          <p>Knapsack capacity: <strong>W = 50</strong></p>
+          <h3 id="behavior-in-01-knapsack">Behavior in 0/1 Knapsack</h3>
+          <ul>
+          <li>Items must be taken <strong>entirely or not at all</strong></li>
+          <li>Possible combinations are evaluated using dynamic programming</li>
+          <li>The optimal solution is:<ul>
+          <li>Take items <strong>B and C</strong></li>
+          <li>Total weight = 20 + 30 = 50</li>
+          <li>Total value = <strong>220</strong></li>
+          </ul>
+          </li>
+          </ul>
+          <p>Even though item A has a high value-to-weight ratio, fractional selection is <strong>not permitted</strong>.</p>
+          <h3 id="behavior-in-fractional-knapsack">Behavior in Fractional Knapsack</h3>
+          <ul>
+          <li><p>Items can be taken <strong>partially</strong></p>
+          </li>
+          <li><p>Items are sorted by value-to-weight ratio</p>
+          </li>
+          <li><p>Selection proceeds greedily:</p>
+          <ul>
+          <li>Take item A fully</li>
+          <li>Take item B fully</li>
+          <li>Take a fraction of item C</li>
+          </ul>
+          </li>
+          <li><p>Total value obtained = <strong>240</strong></p>
+          </li>
+          </ul>
+          <p>This solution is <strong>guaranteed to be optimal</strong> because the Fractional Knapsack problem satisfies the <strong>greedy choice property</strong>.</p>
+          <h3 id="key-takeaway">Key Takeaway</h3>
+          <ul>
+          <li><strong>0/1 Knapsack</strong> is suitable when items are indivisible and requires a more complex solution approach.</li>
+          <li><strong>Fractional Knapsack</strong> allows item division and achieves optimal results using a simple greedy strategy.</li>
+          <li>Observing both behaviors side-by-side helps learners understand <strong>why greedy fails for 0/1 Knapsack but succeeds for Fractional Knapsack</strong>.</li>
+          </ul>
           <hr>
           <h2 id="greedy-approach">Greedy Approach</h2>
           <p>The Fractional Knapsack Problem is solved using a <strong>greedy strategy</strong>, where the locally optimal choice is made at each step with the aim of achieving a globally optimal solution.</p>

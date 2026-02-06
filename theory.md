@@ -46,12 +46,64 @@ For example, if half of an item is taken, half of its value is obtained. This pr
 
 ## Comparison with 0/1 Knapsack Problem
 
+The key difference between the **0/1 Knapsack** and **Fractional Knapsack** problems lies in how items are selected and how optimal solutions are obtained. While both aim to maximize total value under a weight constraint, their approaches and behaviors differ significantly.
+
+### Tabular Comparison
+
 | Feature | 0/1 Knapsack | Fractional Knapsack |
 |-------|-------------|--------------------|
-| Item selection | Entire item or none | Items can be divided |
+| Item selection | Entire item is either taken or not taken (0 or 1) | Items can be divided and taken fractionally |
 | Algorithm used | Dynamic Programming | Greedy Algorithm |
 | Greedy optimality | Not guaranteed | Always optimal |
-| Time complexity | High | Lower |
+| Time complexity | Higher (pseudo-polynomial) | Lower (polynomial) |
+| Item repetition | Not allowed | Not allowed |
+| Typical applications | Discrete objects (machines, devices) | Divisible resources (gold, liquids) |
+
+
+### Example-Based Explanation
+
+#### Consider the following items and knapsack capacity:
+
+| Item | Weight | Value |
+|------|--------|-------|
+| A | 10 | 60 |
+| B | 20 | 100 |
+| C | 30 | 120 |
+
+Knapsack capacity: **W = 50**
+
+
+### Behavior in 0/1 Knapsack
+
+- Items must be taken **entirely or not at all**
+- Possible combinations are evaluated using dynamic programming
+- The optimal solution is:
+  - Take items **B and C**
+  - Total weight = 20 + 30 = 50
+  - Total value = **220**
+
+Even though item A has a high value-to-weight ratio, fractional selection is **not permitted**.
+
+
+### Behavior in Fractional Knapsack
+
+- Items can be taken **partially**
+- Items are sorted by value-to-weight ratio
+- Selection proceeds greedily:
+  - Take item A fully
+  - Take item B fully
+  - Take a fraction of item C
+
+- Total value obtained = **240**
+
+This solution is **guaranteed to be optimal** because the Fractional Knapsack problem satisfies the **greedy choice property**.
+
+
+### Key Takeaway
+
+- **0/1 Knapsack** is suitable when items are indivisible and requires a more complex solution approach.
+- **Fractional Knapsack** allows item division and achieves optimal results using a simple greedy strategy.
+- Observing both behaviors side-by-side helps learners understand **why greedy fails for 0/1 Knapsack but succeeds for Fractional Knapsack**.
 
 ---
 

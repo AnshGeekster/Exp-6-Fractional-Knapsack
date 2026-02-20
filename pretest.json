@@ -19,39 +19,39 @@
       "difficulty": "beginner"
     },
     {
-      "question": "In which type of knapsack problem are items allowed to be divided into smaller parts?",
-      "answers": {
-        "a": "0/1 Knapsack",
-        "b": "Unbounded Knapsack",
-        "c": "Fractional Knapsack",
-        "d": "Bounded Knapsack"
-      },
-      "explanations": {
-        "a": "In 0/1 Knapsack, items are either fully selected or not selected.",
-        "b": "Unbounded knapsack allows repetition, not division of items.",
-        "c": "Fractional Knapsack allows items to be divided into fractions.",
-        "d": "Bounded knapsack limits item count but does not allow fractions."
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
-    },
+  "question": "What is the main idea behind the greedy approach used in the Fractional Knapsack problem?",
+  "answers": {
+    "a": "Select items with the highest weight first",
+    "b": "Select items randomly until capacity is filled",
+    "c": "Select items with the highest value-to-weight ratio first",
+    "d": "Select items with the lowest value first"
+  },
+  "explanations": {
+    "a": "Weight alone does not guarantee maximum value.",
+    "b": "Random selection does not ensure optimal results.",
+    "c": "The greedy strategy selects items with the highest value-to-weight ratio to maximize value gain.",
+    "d": "Lower value items are not prioritized in optimization."
+  },
+  "correctAnswer": "c",
+  "difficulty": "beginner"
+},
     {
-      "question": "Which algorithmic strategy is commonly used to solve the Fractional Knapsack problem?",
-      "answers": {
-        "a": "Dynamic Programming",
-        "b": "Divide and Conquer",
-        "c": "Greedy Algorithm",
-        "d": "Backtracking"
-      },
-      "explanations": {
-        "a": "Dynamic programming is used for 0/1 Knapsack, not Fractional Knapsack.",
-        "b": "Divide and conquer is not suitable for this optimization problem.",
-        "c": "Fractional Knapsack is optimally solved using a greedy approach.",
-        "d": "Backtracking is inefficient for this problem."
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
-    },
+  "question": "Which step is performed first in the Fractional Knapsack algorithm?",
+  "answers": {
+    "a": "Fill the knapsack randomly",
+    "b": "Sort items by value-to-weight ratio",
+    "c": "Select the heaviest item first",
+    "d": "Calculate total weight of all items"
+  },
+  "explanations": {
+    "a": "Random selection does not guarantee optimal results.",
+    "b": "Items are sorted by value-to-weight ratio to ensure greedy optimal selection.",
+    "c": "Selecting the heaviest item first may reduce total value.",
+    "d": "Total weight calculation is not the first algorithmic step."
+  },
+  "correctAnswer": "b",
+  "difficulty": "beginner"
+},
     {
       "question": "What does the value-to-weight ratio of an item represent?",
       "answers": {

@@ -2,16 +2,12 @@
 
 1. **T. H. Cormen, C. E. Leiserson, R. L. Rivest, and C. Stein**,  
    *Introduction to Algorithms*, 3rd Edition, MIT Press, 2009.  
-   (Chapter on Greedy Algorithms)
 
 2. **Ellis Horowitz, Sartaj Sahni, and Sanguthevar Rajasekaran**,  
    *Fundamentals of Computer Algorithms*, 2nd Edition, Universities Press, 2007.  
-   (Knapsack and Greedy Method Applications)
 
 3. **A. V. Aho, J. E. Hopcroft, and J. D. Ullman**,  
    *The Design and Analysis of Computer Algorithms*, Addison-Wesley, 1974.  
-   (Optimization problems and greedy strategies)
-
 ---
 
 ## Website References

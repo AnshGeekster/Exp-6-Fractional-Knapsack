@@ -184,8 +184,8 @@ function initializeSimulation() {
             value: vNodes[i],
             ratio: (vNodes[i] / w),
             color: `hsl(${i * 60}, 70%, 60%)`,
-            // Scale visualization height based on max weight in this set, clamped 30-70px
-            visHeight: Math.min(70, Math.max(30, (w / maxW) * 70))
+            // Fixed constant height for all items
+            visHeight: 30
         }));
 
         renderItems(items);
@@ -479,6 +479,14 @@ if (knapsackContainer) {
             </tr>
         `;
     });
+    
+    // Auto-scroll result table to show latest items
+    const resultDetails = document.querySelector('.result-details');
+    if (resultDetails) {
+        setTimeout(() => {
+            resultDetails.scrollTop = resultDetails.scrollHeight;
+        }, 10);
+    }
 
     if (state.finished) {
     statusTag.innerText = 'Completed';

@@ -331,142 +331,37 @@
           
             </div>
               <h2 id="introduction">Introduction</h2>
-          <p>The <strong>Fractional Knapsack Problem</strong> is a classical optimization problem studied in the subject of <strong>Design and Analysis of Algorithms (DAA)</strong>. The main objective of this problem is to select items in such a way that the <strong>total value obtained is maximized</strong> while ensuring that the <strong>total weight of the selected items does not exceed the capacity of the knapsack</strong>.</p>
+          <p>The main objective of fractional knapsack problem is to select items in such a way that the <strong>total value obtained is maximized</strong> while ensuring that the <strong>total weight of the selected items does not exceed the capacity of the knapsack</strong>.</p>
           <p>This problem is widely used to demonstrate the application of <strong>greedy algorithms</strong>, as it satisfies the greedy choice property and optimal substructure. The fractional nature of the problem allows items to be divided, making it computationally efficient and conceptually intuitive.</p>
           <hr>
           <h2 id="problem-definition">Problem Definition</h2>
-          <p>Consider a knapsack with a maximum weight capacity <code>W</code>. There are <code>n</code> items available, and each item <code>i</code> has:</p>
+          <p>Consider a knapsack with a maximum weight capacity W. There are n items available, and each item i has:</p>
           <ul>
-          <li>a <strong>weight</strong> <code>wᵢ</code></li>
-          <li>a <strong>value (profit)</strong> <code>vᵢ</code></li>
+          <li>a <strong>weight</strong> wᵢ</li>
+          <li>a <strong>value (profit)</strong> vᵢ</li>
           </ul>
           <p>The goal is to select items (or fractions of items) such that:</p>
           <ul>
-          <li>The total weight of selected items is less than or equal to <code>W</code></li>
-          <li>The total value obtained is maximized</li>
+          <li>The total weight of selected items is less than or equal to W.</li>
+          <li>The total value obtained is maximized.</li>
           </ul>
           <p>Mathematically:</p>
           <p><strong>Objective:</strong>
           Maximize the total value obtained from the selected items.</p>
           <p>Total Value = v1 + v2 + v3 + ... + vn</p>
           <p><strong>Subject to the constraint:</strong>
-          The total weight of the selected items must not exceed the knapsack capacity <code>W</code>.</p>
+          The total weight of the selected items must not exceed the knapsack capacity W.</p>
           <p>Total Weight ≤ W</p>
           <p>Where:</p>
           <ul>
-          <li><code>vi</code> represents the value of item <code>i</code></li>
-          <li><code>wi</code> represents the weight of item <code>i</code></li>
-          <li><code>n</code> is the total number of items</li>
+          <li>vi represents the value of item i.</li>
+          <li>wi represents the weight of item i.</li>
+          <li>n is the total number of items</li>
           </ul>
-          <h2 id="fractional-property-of-the-problem">Fractional Property of the Problem</h2>
+          <h2 id="fractional-property">Fractional Property</h2>
           <p>The defining characteristic of the Fractional Knapsack Problem is that <strong>items can be divided into fractions</strong>.</p>
           <p>If an item cannot be completely placed into the knapsack due to weight constraints, a <strong>fraction of the item</strong> can be taken. The value gained from the fraction is <strong>directly proportional</strong> to the fraction of weight taken.</p>
           <p>For example, if half of an item is taken, half of its value is obtained. This property distinguishes the fractional knapsack problem from the 0/1 knapsack problem, where items must be taken entirely or not at all.</p>
-          <hr>
-          <h2 id="comparison-with-01-knapsack-problem">Comparison with 0/1 Knapsack Problem</h2>
-          <p>The key difference between the <strong>0/1 Knapsack</strong> and <strong>Fractional Knapsack</strong> problems lies in how items are selected and how optimal solutions are obtained. While both aim to maximize total value under a weight constraint, their approaches and behaviors differ significantly.</p>
-          <h3 id="tabular-comparison">Tabular Comparison</h3>
-          <table>
-          <thead>
-          <tr>
-          <th>Feature</th>
-          <th>0/1 Knapsack</th>
-          <th>Fractional Knapsack</th>
-          </tr>
-          </thead>
-          <tbody><tr>
-          <td>Item selection</td>
-          <td>Entire item is either taken or not taken (0 or 1)</td>
-          <td>Items can be divided and taken fractionally</td>
-          </tr>
-          <tr>
-          <td>Algorithm used</td>
-          <td>Dynamic Programming</td>
-          <td>Greedy Algorithm</td>
-          </tr>
-          <tr>
-          <td>Greedy optimality</td>
-          <td>Not guaranteed</td>
-          <td>Always optimal</td>
-          </tr>
-          <tr>
-          <td>Time complexity</td>
-          <td>Higher (pseudo-polynomial)</td>
-          <td>Lower (polynomial)</td>
-          </tr>
-          <tr>
-          <td>Item repetition</td>
-          <td>Not allowed</td>
-          <td>Not allowed</td>
-          </tr>
-          <tr>
-          <td>Typical applications</td>
-          <td>Discrete objects (machines, devices)</td>
-          <td>Divisible resources (gold, liquids)</td>
-          </tr>
-          </tbody></table>
-          <h3 id="example-based-explanation">Example-Based Explanation</h3>
-          <h4 id="consider-the-following-items-and-knapsack-capacity">Consider the following items and knapsack capacity:</h4>
-          <table>
-          <thead>
-          <tr>
-          <th>Item</th>
-          <th>Weight</th>
-          <th>Value</th>
-          </tr>
-          </thead>
-          <tbody><tr>
-          <td>A</td>
-          <td>10</td>
-          <td>60</td>
-          </tr>
-          <tr>
-          <td>B</td>
-          <td>20</td>
-          <td>100</td>
-          </tr>
-          <tr>
-          <td>C</td>
-          <td>30</td>
-          <td>120</td>
-          </tr>
-          </tbody></table>
-          <p>Knapsack capacity: <strong>W = 50</strong></p>
-          <h3 id="behavior-in-01-knapsack">Behavior in 0/1 Knapsack</h3>
-          <ul>
-          <li>Items must be taken <strong>entirely or not at all</strong></li>
-          <li>Possible combinations are evaluated using dynamic programming</li>
-          <li>The optimal solution is:<ul>
-          <li>Take items <strong>B and C</strong></li>
-          <li>Total weight = 20 + 30 = 50</li>
-          <li>Total value = <strong>220</strong></li>
-          </ul>
-          </li>
-          </ul>
-          <p>Even though item A has a high value-to-weight ratio, fractional selection is <strong>not permitted</strong>.</p>
-          <h3 id="behavior-in-fractional-knapsack">Behavior in Fractional Knapsack</h3>
-          <ul>
-          <li><p>Items can be taken <strong>partially</strong></p>
-          </li>
-          <li><p>Items are sorted by value-to-weight ratio</p>
-          </li>
-          <li><p>Selection proceeds greedily:</p>
-          <ul>
-          <li>Take item A fully</li>
-          <li>Take item B fully</li>
-          <li>Take a fraction of item C</li>
-          </ul>
-          </li>
-          <li><p>Total value obtained = <strong>240</strong></p>
-          </li>
-          </ul>
-          <p>This solution is <strong>guaranteed to be optimal</strong> because the Fractional Knapsack problem satisfies the <strong>greedy choice property</strong>.</p>
-          <h3 id="key-takeaway">Key Takeaway</h3>
-          <ul>
-          <li><strong>0/1 Knapsack</strong> is suitable when items are indivisible and requires a more complex solution approach.</li>
-          <li><strong>Fractional Knapsack</strong> allows item division and achieves optimal results using a simple greedy strategy.</li>
-          <li>Observing both behaviors side-by-side helps learners understand <strong>why greedy fails for 0/1 Knapsack but succeeds for Fractional Knapsack</strong>.</li>
-          </ul>
           <hr>
           <h2 id="greedy-approach">Greedy Approach</h2>
           <p>The Fractional Knapsack Problem is solved using a <strong>greedy strategy</strong>, where the locally optimal choice is made at each step with the aim of achieving a globally optimal solution.</p>
@@ -476,44 +371,6 @@
           <p>This ratio indicates the amount of value gained per unit weight of an item.</p>
           <h3 id="greedy-rule">Greedy Rule</h3>
           <p>Items are selected in <strong>descending order of their value-to-weight ratio</strong>. Items with a higher ratio are given priority, as they provide more value per unit weight.</p>
-          <hr>
-          <h2 id="notations-used">Notations Used</h2>
-          <table>
-          <thead>
-          <tr>
-          <th>Symbol</th>
-          <th>Description</th>
-          </tr>
-          </thead>
-          <tbody><tr>
-          <td><code>n</code></td>
-          <td>Number of items</td>
-          </tr>
-          <tr>
-          <td><code>W</code></td>
-          <td>Capacity of the knapsack</td>
-          </tr>
-          <tr>
-          <td><code>wᵢ</code></td>
-          <td>Weight of item <code>i</code></td>
-          </tr>
-          <tr>
-          <td><code>vᵢ</code></td>
-          <td>Value of item <code>i</code></td>
-          </tr>
-          <tr>
-          <td><code>vᵢ / wᵢ</code></td>
-          <td>Value-to-weight ratio</td>
-          </tr>
-          <tr>
-          <td><code>currentWeight</code></td>
-          <td>Weight currently in the knapsack</td>
-          </tr>
-          <tr>
-          <td><code>totalValue</code></td>
-          <td>Total value accumulated</td>
-          </tr>
-          </tbody></table>
           <hr>
           <h2 id="algorithm-explanation">Algorithm Explanation</h2>
           <ol>
@@ -560,18 +417,39 @@
           <td>4.0</td>
           </tr>
           </tbody></table>
-          <p>After sorting by ratio, the order becomes: <strong>A → B → C</strong></p>
+          <p>After computing the value-to-weight ratios and sorting in descending order, the order becomes:<br><strong>A → B → C</strong></p>
+          <h3 id="step-by-step-selection">Step-by-Step Selection</h3>
           <ul>
-          <li>Item A is fully selected: weight = 10, value = 60  </li>
-          <li>Item B is fully selected: weight = 20, value = 100  </li>
-          <li>Remaining capacity = 20  </li>
-          <li>A fraction <code>20/30</code> of item C is selected  </li>
+          <li><p><strong>Item A</strong> is fully selected:  </p>
+          <ul>
+          <li>Weight used = 10  </li>
+          <li>Value gained = 60  </li>
           </ul>
-          <p>Value gained from item C: (20 / 30) × 120 = 80</p>
-          <p>Final results:</p>
+          </li>
+          <li><p><strong>Item B</strong> is fully selected:  </p>
           <ul>
-          <li>Total weight used = 50</li>
-          <li>Total value obtained = 240</li>
+          <li>Weight used = 20  </li>
+          <li>Value gained = 100  </li>
+          </ul>
+          </li>
+          <li><p><strong>Item C</strong> is partially selected (fractional selection):  </p>
+          <ul>
+          <li>Fraction selected = 20 / 30  </li>
+          <li>Value gained = (20 / 30) × 120 = 80  </li>
+          </ul>
+          </li>
+          </ul>
+          <h3 id="capacity-analysis">Capacity Analysis</h3>
+          <ul>
+          <li>Total weight of selected items = 10 + 20 + 20 = <strong>50</strong></li>
+          <li>Knapsack capacity = <strong>50</strong></li>
+          <li>Remaining capacity = <strong>0</strong> (Knapsack is fully filled)</li>
+          </ul>
+          <h3 id="final-results">Final Results</h3>
+          <ul>
+          <li><strong>Total weight used = 50</strong></li>
+          <li><strong>Total value obtained = 240</strong></li>
+          <li><strong>Unused capacity = 0</strong></li>
           </ul>
           <hr>
           <ol start="2">
@@ -607,7 +485,7 @@
           </tr>
           </tbody></table>
           <p>After computing the value-to-weight ratios and sorting in descending order, the order becomes:<br><strong>P → Q → R</strong></p>
-          <h3 id="step-by-step-selection">Step-by-Step Selection</h3>
+          <h3 id="step-by-step-selection-1">Step-by-Step Selection</h3>
           <ul>
           <li><p><strong>Item P</strong> is fully selected:  </p>
           <ul>
@@ -628,14 +506,14 @@
           </ul>
           </li>
           </ul>
-          <h3 id="capacity-analysis">Capacity Analysis</h3>
+          <h3 id="capacity-analysis-1">Capacity Analysis</h3>
           <ul>
           <li>Total weight of all items = 10 + 20 + 30 = <strong>60</strong></li>
           <li>Knapsack capacity = <strong>100</strong></li>
           <li>Remaining capacity = <strong>40</strong></li>
           </ul>
           <p>Since <strong>no items remain</strong>, the algorithm terminates execution even though the knapsack is not completely filled.</p>
-          <h3 id="final-results">Final Results</h3>
+          <h3 id="final-results-1">Final Results</h3>
           <ul>
           <li><strong>Total weight used = 60</strong></li>
           <li><strong>Total value obtained = 220</strong></li>
@@ -643,9 +521,6 @@
           </ul>
           <h3 id="key-observation">Key Observation</h3>
           <p>In the Fractional Knapsack problem, <strong>each item can be selected at most once</strong>.<br>If the knapsack capacity is greater than the sum of all item weights, <strong>all items are selected fully</strong>, and the remaining capacity remains unused. No repetition or forced fractional selection occurs.</p>
-          <h3 id="teaching-insight">Teaching Insight</h3>
-          <p>This example highlights an important edge case and clearly distinguishes the <strong>Fractional Knapsack problem</strong> from the <strong>Unbounded Knapsack problem</strong>, where items can be selected multiple times.</p>
-          <hr>
           <h2 id="why-the-greedy-approach-works">Why the Greedy Approach Works</h2>
           <p>The Fractional Knapsack Problem satisfies the <strong>Greedy Choice Property</strong>, which means that selecting the locally optimal item (with the highest value-to-weight ratio) at each step leads to the globally optimal solution.</p>
           <p>Since the value gained is directly proportional to the weight taken, there is no advantage in postponing or skipping an item with a higher ratio. This guarantees optimality when using a greedy strategy, a property that does not hold in the 0/1 knapsack problem.</p>
@@ -653,21 +528,34 @@
           <h2 id="complexity-analysis">Complexity Analysis</h2>
           <h3 id="time-complexity">Time Complexity</h3>
           <ul>
-          <li>Sorting items based on ratio: <code>O(n log n)</code></li>
-          <li>Selecting items: <code>O(n)</code></li>
+          <li>Sorting items based on ratio: O(n log n)</li>
+          <li>Selecting items: O(n)</li>
           </ul>
           <p>Overall time complexity: O(n log n)</p>
           <h3 id="space-complexity">Space Complexity</h3>
           <p>Overall space complexity: O(n)</p>
           <hr>
           <h2 id="applications-of-fractional-knapsack">Applications of Fractional Knapsack</h2>
+          <h3 id="cargo-loading-and-logistics-management">Cargo Loading and Logistics Management</h3>
+          <p>The <strong>Fractional Knapsack concept is widely applied in cargo loading and transportation systems</strong>, where goods can be divided into smaller parts (e.g., grains, liquids, chemicals, bulk materials).  </p>
+          <p>In cargo loading, a vehicle or container has a <strong>maximum weight capacity</strong>, and each type of cargo has an associated <strong>value per unit weight</strong>. The goal is to <strong>maximize the total value of goods loaded without exceeding the weight limit</strong>.</p>
+          <p>Using the Fractional Knapsack approach:</p>
           <ul>
-          <li>Cargo loading and logistics management</li>
-          <li>Resource allocation problems</li>
-          <li>Budget optimization</li>
-          <li>Bandwidth allocation</li>
-          <li>Cutting and blending problems</li>
+          <li>Each cargo type is treated as an item with a <strong>weight and value</strong>.</li>
+          <li>The <strong>value-to-weight ratio</strong> represents profit or importance per unit weight.</li>
+          <li>Cargo types with the highest value-to-weight ratio are loaded first.</li>
+          <li>If the remaining capacity cannot hold an entire cargo batch, <strong>only a fraction of that cargo is loaded</strong> to fully utilize the available capacity.</li>
           </ul>
+          <p>This approach ensures <strong>maximum profit or utility from limited transportation capacity</strong>, making it highly suitable for logistics optimization.</p>
+          <hr>
+          <h3 id="other-applications">Other Applications</h3>
+          <ul>
+          <li><strong>Resource Allocation Problems:</strong> Distributing limited resources among competing tasks to maximize efficiency or output.</li>
+          <li><strong>Budget Optimization:</strong> Allocating funds to projects where partial funding is allowed and yields proportional benefits.</li>
+          <li><strong>Bandwidth Allocation:</strong> Assigning network bandwidth to different services or users based on priority and efficiency.</li>
+          <li><strong>Cutting and Blending Problems:</strong> Used in industries like metallurgy and food processing where materials can be mixed or divided in fractional quantities.</li>
+          </ul>
+          <hr>
           
           </div>
           <div class="bug-report-mobile">

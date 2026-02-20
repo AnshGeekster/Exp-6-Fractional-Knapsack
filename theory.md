@@ -66,7 +66,7 @@ Items are selected in **descending order of their value-to-weight ratio**. Items
 
 1. Calculate the value-to-weight ratio for each item.
 2. Sort all items in decreasing order of their ratios.
-3. Initialize `currentWeight = 0` and `totalValue = 0`.
+3. Initialize currentWeight = 0 and totalValue = 0.
 4. Traverse the sorted list of items:
    - If the entire item can be added without exceeding capacity, add it completely.
    - Otherwise, add the maximum possible fraction of the item that fits and terminate the process.
@@ -80,7 +80,7 @@ Items are selected in **descending order of their value-to-weight ratio**. Items
 
 Available items are:
 
-| Item | Weight (`wᵢ`) | Value (`vᵢ`) | Ratio (`vᵢ / wᵢ`) |
+| Item | Weight (wᵢ) | Value (vᵢ) | Ratio (vᵢ / wᵢ) |
 |------|---------------|--------------|------------------|
 | A | 10 | 60 | 6.0 |
 | B | 20 | 100 | 5.0 |
@@ -120,7 +120,7 @@ After computing the value-to-weight ratios and sorting in descending order, the 
 
 Available items are:
 
-| Item | Weight (`wᵢ`) | Value (`vᵢ`) | Ratio (`vᵢ / wᵢ`) |
+| Item | Weight (wᵢ) | Value (vᵢ) | Ratio (vᵢ / wᵢs) |
 |------|---------------|--------------|------------------|
 | P    | 10            | 50           | 5.0              |
 | Q    | 20            | 80           | 4.0              |

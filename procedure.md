@@ -9,19 +9,19 @@
 - This represents the maximum weight the knapsack can hold.
 - **Input Constraint:** Knapsack Capacity should be **≤ 200**.
 
-<img src="images/image1.png" width="350">
+<img src="images/image15.png" width="700">
 
 ### 1.2 Enter Item Weights
 - Enter the Item Weights as a comma-separated list of positive numbers.
 - **Input Constraint:** Maximum **15 items** are allowed and each item’s weight should be **≤ 100**.
 
-<img src="images/image2.png" width="350">
+<img src="images/image16.png" width="700">
 
 ### 1.3 Enter Item Values
 - Enter the Item Values as a comma-separated list corresponding to each item’s weight.
 - **Input Constraint:** Each item’s value should be **≤ 2000**.
 
-<img src="images/image3.png" width="350">
+<img src="images/image17.png" width="700">
 
 ### 1.4 Input Validation
 Ensure that:
@@ -71,7 +71,7 @@ For each step:
 - The algorithm checks whether the item can be fully accommodated in the knapsack.
 - The active algorithm step is highlighted in the **Algorithm Steps** panel.
 
-<img src="images/image8.png" width="450">
+<img src="images/image18.png" width="700">
 
 
 If the item fits completely:
@@ -103,11 +103,11 @@ Additional control:
 
 - Observe the **Items Panel**, where items are displayed in sorted order of value-to-weight ratio.
 
-<img src="images/image10.png" width="350">
+<img src="images/image20.png" width="700">
 
 - Track the gradual filling of the **Knapsack Panel**, represented by a coloured progress fill.
 
-<img src="images/image11.png" width="350">
+<img src="images/image19.png" width="700">
 
 Notice:
 - Full items increase the fill proportionally to their weight.
@@ -122,7 +122,7 @@ Notice:
 - Once the knapsack reaches its maximum capacity, the simulation displays **Completed**.
 - The **Total Value** obtained is shown in the **Results** panel.
 
-<img src="images/image12.png" width="350">
+<img src="images/image14.png" width="700">
 
 - The **Auto Play** button is disabled to indicate the completion of the experiment.
 - The final state of the knapsack remains visible for verification.

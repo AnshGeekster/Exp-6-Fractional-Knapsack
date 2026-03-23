@@ -331,7 +331,7 @@
           
             </div>
               <h2 id="introduction">Introduction</h2>
-          <p>The main objective of fractional knapsack problem is to select items in such a way that the <strong>total value obtained is maximized</strong> while ensuring that the <strong>total weight of the selected items does not exceed the capacity of the knapsack</strong>.</p>
+          <p>The main objective of the fractional knapsack problem is to select items in such a way that the <strong>total value obtained is maximized</strong> while ensuring that the <strong>total weight of the selected items does not exceed the capacity of the knapsack</strong>.</p>
           <p>This problem is widely used to demonstrate the application of <strong>greedy algorithms</strong>, as it satisfies the greedy choice property and optimal substructure. The fractional nature of the problem allows items to be divided, making it computationally efficient and conceptually intuitive.</p>
           <hr>
           <h2 id="problem-definition">Problem Definition</h2>
@@ -340,23 +340,25 @@
           <li>a <strong>weight</strong> wᵢ</li>
           <li>a <strong>value (profit)</strong> vᵢ</li>
           </ul>
+          <p>In the fractional knapsack problem, items can be divided, meaning we can take any fraction of an item.</p>
           <p>The goal is to select items (or fractions of items) such that:</p>
           <ul>
           <li>The total weight of selected items is less than or equal to W.</li>
           <li>The total value obtained is maximized.</li>
           </ul>
-          <p>Mathematically:</p>
+          <p>Let xᵢ represent the fraction of item i selected, where 0 ≤ xᵢ ≤ 1.</p>
           <p><strong>Objective:</strong>
           Maximize the total value obtained from the selected items.</p>
-          <p>Total Value = v1 + v2 + v3 + ... + vn</p>
+          <p>Total Value = x₁v₁ + x₂v₂ + x₃v₃ + ... + xₙvₙ</p>
           <p><strong>Subject to the constraint:</strong>
           The total weight of the selected items must not exceed the knapsack capacity W.</p>
-          <p>Total Weight ≤ W</p>
+          <p>x₁w₁ + x₂w₂ + x₃w₃ + ... + xₙwₙ ≤ W</p>
           <p>Where:</p>
           <ul>
-          <li>vi represents the value of item i.</li>
-          <li>wi represents the weight of item i.</li>
-          <li>n is the total number of items</li>
+          <li>vᵢ represents the value of item i.</li>
+          <li>wᵢ represents the weight of item i.</li>
+          <li>xᵢ represents the fraction of item i selected (0 ≤ xᵢ ≤ 1).</li>
+          <li>n is the total number of items.</li>
           </ul>
           <h2 id="fractional-property">Fractional Property</h2>
           <p>The defining characteristic of the Fractional Knapsack Problem is that <strong>items can be divided into fractions</strong>.</p>
@@ -462,7 +464,7 @@
           <th>Item</th>
           <th>Weight (wᵢ)</th>
           <th>Value (vᵢ)</th>
-          <th>Ratio (vᵢ / wᵢs)</th>
+          <th>Ratio (vᵢ / wᵢ)</th>
           </tr>
           </thead>
           <tbody><tr>
